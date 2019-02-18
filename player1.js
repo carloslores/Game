@@ -7,10 +7,10 @@ function Player1(game) {
     this.img = new Image
     this.img.src = "img/Jon.png"
 
-    this.w = 100
-    this.h = 200
+    this.w = 70
+    this.h = 140
     this.vy = 1
-    this.positionY = 400
+    this.positionY = 335
     this.positionX = 150
     this.swords = []
 
@@ -55,35 +55,38 @@ Player1.prototype.setListerner = function() {
         if (this.positionY + gravity <= this.game.canvas.height - this.h) {
             this.positionY += gravity
         }
-        console.log("odio a Newton")
-
-
-
-        Player1.prototype.jump = function() {
-
-            this.positionY -= 80
-
-            this.gravity()
-        }
-        Player1.prototype.moveF = function() {
-            if (this.positionX + 20 <= this.game.canvas.width - this.w) {
-
-
-                this.positionX += 20
-            }
-        }
-        Player1.prototype.moveB = function() {
-            if (this.positionX - 20 <= this.game.canvas.width - this.w) {
-                this.positionX -= 20
-            }
-        }
 
     }
+
+
+Player1.prototype.jump = function() {
+
+    this.positionY -= 80
+
+    this.gravity()
+}
+Player1.prototype.moveF = function() {
+    if (this.positionX + 20 <= this.game.canvas.width - this.w) {
+
+
+        this.positionX += 20
+    }
+}
+Player1.prototype.moveB = function() {
+    if (this.positionX - 20 > 0) {
+        this.positionX -= 20
+    }
+}
+
+
 Player1.prototype.shoot = function() {
-    this.img = new Image()
-    this.img.src = "img/espada.png"
-    var sword = this.img.src
+    /* this.img = new Image()
+     this.img.src = "img/espada.png"
+     var sword = this.img.src*/
     sword = new Sword(this.game, this.x + this.w, this.y + this.h / 2)
     this.swords.push(sword)
 
 }
+
+
+// hacer una function creadora de armas
