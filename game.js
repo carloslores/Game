@@ -41,7 +41,7 @@ var Game = {
             if (this.framesCounter % 50 === 0) {
                 this.generateEnemy();
             }
-            this.move()
+            this.moveAll()
             this.paintAll()
         }.bind(this), 1000 / this.fps);
 
@@ -64,11 +64,12 @@ var Game = {
     paintAll: function() {
         this.background.paint()
         this.player1.paint()
-            //this.enemy.forEach(function(enem) { enemy.draw(); });
+        this.enemy.forEach(function(enem) { enem.draw(); });
 
     },
-    move: function() {
+    moveAll: function() {
         this.player1.gravity()
+        this.enemy.forEach(function(enem) { enem.move(); });
     }
 
 
