@@ -38,6 +38,9 @@ var Game = {
             this.framesCounter++
                 if (this.framesCounter > 1000)
                     this.framesCounter = 0
+            if (this.framesCounter % 50 === 0) {
+                this.generateEnemy();
+            }
             this.move()
             this.paintAll()
         }.bind(this), 1000 / this.fps);
@@ -48,6 +51,11 @@ var Game = {
         this.background = new Background(this)
         this.player1 = new Player1(this)
         this.framesCounter = 0
+        this.enemy = []
+    },
+    generateEnemy: function() {
+        this.enemy.push(new Enemy(this))
+
     },
     clear: function() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -56,6 +64,7 @@ var Game = {
     paintAll: function() {
         this.background.paint()
         this.player1.paint()
+            //this.enemy.forEach(function(enem) { enemy.draw(); });
 
     },
     move: function() {

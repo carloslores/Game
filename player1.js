@@ -91,7 +91,7 @@ Player1.prototype.moveB = function() {
 }
 Player1.prototype.shoot = function() {
     console.log("paso por aquí")
-    var bullet = new Bullet(this.game, this.positionX + this.w, this.positionY + this.h / 2)
+    var bullet = new Bullet(this.game, this.positionX + 300, this.positionY + this.h / 2)
 
     this.bullets.push(bullet)
     console.log("hahahaha")
