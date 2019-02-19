@@ -44,6 +44,13 @@ var Game = {
             this.moveAll()
             this.paintAll()
             this.clearEnemy()
+            if (this.youDied()) {
+                console.log("YOU ARE DEAD")
+                alert("YOU ARE DEAD")
+            }
+            if (this.youKill()) {
+                console.log("YOU KILL")
+            }
         }.bind(this), 1000 / this.fps);
 
 
@@ -54,9 +61,21 @@ var Game = {
         this.framesCounter = 0
         this.enemy = []
     },
+    youDied: function() {
+        return this.enemy.some(function(enem) {
+            return (
+                ((this.player1.positionX + this.player1.w - 60) >= enem.x &&
+                    this.player1.positionX < (enem.x + enem.w) &&
+                    this.player1.positionY + (this.player1.h) >= enem.y)
+
+            )
+
+        }.bind(this))
+
+    },
     clearEnemy: function() {
         this.enemy = this.enemy.filter(function(enem) {
-            return enem.x >= 0;
+            return enem.x + enem.w >= 0;
         });
     },
     generateEnemy: function() {
