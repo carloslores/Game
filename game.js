@@ -7,6 +7,7 @@ var Game = {
         top: 38,
         forward: 39,
         backward: 37,
+        shoot: 32
 
     },
 
