@@ -43,6 +43,7 @@ var Game = {
             }
             this.moveAll()
             this.paintAll()
+            this.clearEnemy()
         }.bind(this), 1000 / this.fps);
 
 
@@ -52,6 +53,11 @@ var Game = {
         this.player1 = new Player1(this)
         this.framesCounter = 0
         this.enemy = []
+    },
+    clearEnemy: function() {
+        this.enemy = this.enemy.filter(function(enem) {
+            return enem.x >= 0;
+        });
     },
     generateEnemy: function() {
         this.enemy.push(new Enemy(this))
