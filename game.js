@@ -59,6 +59,7 @@ var Game = {
         this.background = new Background(this)
         this.player1 = new Player1(this)
         this.framesCounter = 0
+        this.score = 0
         this.enemy = []
     },
     youDied: function() {
@@ -74,14 +75,30 @@ var Game = {
 
     },
     youKill: function() {
-        return this.enemy.some(function(enem) {
-            return this.player1.bullets.some(function(bullet) {
-                return bullet.x + bullet.w > enem.x
+        var kill = false;
 
-            })
+        this.enemy.forEach(function(enemy) {
+                this.player1.bullets.forEach(function(bullet) {
+                    if (bullet.x + bullet.w > enemy.x) {
+                        this.player1.bullets.shift();
+                        this.enemy.shift();
+                    }
+                }.bind(this))
+            }.bind(this))
+            /*
+                    return this.enemy.some(function(enem) {
+                        return this.player1.bullets.some(function(bullet) {
+
+                            bullet.x + bullet.w > enem.x
 
 
-        }.bind(this))
+                            return this.enemy.shift()
+
+
+                        }.bind(this))
+
+
+                    }.bind(this))*/
 
     },
 
@@ -101,14 +118,18 @@ var Game = {
     paintAll: function() {
         this.background.paint()
         this.player1.paint()
-        this.enemy.forEach(function(enem) { enem.draw(); });
+        this.enemy.forEach(function(enem) { enem.draw(); })
+            //this.paintScore()
 
     },
     moveAll: function() {
         this.player1.gravity()
         this.enemy.forEach(function(enem) { enem.move(); });
+    },
+    /* paintScore: function() {
+        this.score.update(this.score, this.ctx)
     }
-
+*/
 
 
 
