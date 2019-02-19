@@ -73,6 +73,18 @@ var Game = {
         }.bind(this))
 
     },
+    youKill: function() {
+        return this.enemy.some(function(enem) {
+            return this.player1.bullets.some(function(bullet) {
+                return bullet.x + bullet.w > enem.x
+
+            })
+
+
+        }.bind(this))
+
+    },
+
     clearEnemy: function() {
         this.enemy = this.enemy.filter(function(enem) {
             return enem.x + enem.w >= 0;
