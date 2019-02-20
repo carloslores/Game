@@ -39,7 +39,7 @@ var Game = {
                 if (this.framesCounter > 1000)
                     this.framesCounter = 0
             if (this.framesCounter % 50 === 0) {
-                this.generateEnemy();
+                this.generateEnemy()
             }
 
             this.moveAll()
@@ -83,7 +83,7 @@ var Game = {
 
         this.enemy.forEach(function(enemy) {
                 this.player1.bullets.forEach(function(bullet) {
-                    if (bullet.x + bullet.w > enemy.x) {
+                    if (bullet.x + bullet.w > enemy.x && bullet.y + bullet.w > enemy.y) {
                         this.player1.bullets.shift();
                         this.enemy.shift();
                         this.scor += 10
