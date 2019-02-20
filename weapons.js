@@ -27,10 +27,10 @@ Bullet.prototype.paint = function() {
 Bullet.prototype.move = function() {
     this.x += this.vx;
 
-    this.vy += this.gravity;
-    this.y += this.vy;
+    // this.vy += this.gravity;
+    // this.y += this.vy;
 
-    if (this.y > this.game.player1.y0 + this.game.player1.h) {
-        this.vy *= -1;
-    }
+    // if (this.y > this.game.player1.y0 + this.game.player1.h) {
+    //     this.vy *= -1;
+    // }
 };

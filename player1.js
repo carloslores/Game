@@ -1,7 +1,6 @@
 function Player1(game) {
     this.game = game
     this.x = this.game.canvas.width * 0.08
-    this.y0 = this.game.canvas.height * 0.08
     this.y = this.y0
 
     this.img = new Image
@@ -9,8 +8,9 @@ function Player1(game) {
 
     this.w = 70
     this.h = 140
+    this.y0 = this.game.canvas.height - this.h
     this.vy = 1
-    this.positionY = 335
+    this.positionY = this.y0
     this.positionX = 150
     this.bullets = []
 
@@ -80,8 +80,10 @@ Player1.prototype.gravity = function() {
 
 Player1.prototype.jump = function() {
     if (this.positionY - 180 > 0 && this.positionY - 180 >= this.h) {
-        this.positionY -= 300
-        this.gravity()
+        this.positionY -= 5
+        this.vy = -10
+            // this.gravity()
+
 
     }
 }
@@ -103,6 +105,19 @@ Player1.prototype.shoot = function() {
 
     this.bullets.push(bullet)
     console.log("hahahaha")
+}
+Player1.prototype.move = function() {
+
+    var gravity = 0.4;
+
+    if (this.positionY >= this.y0) {
+        this.positionY = this.y0;
+        this.vy = 1;
+    } else {
+        console.log("entra")
+        this.positionY += this.vy;
+        this.vy += gravity;
+    }
 }
 
 

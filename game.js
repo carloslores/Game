@@ -47,7 +47,7 @@ var Game = {
             this.clearEnemy()
             if (this.youDied()) {
                 console.log("YOU ARE DEAD")
-                alert("YOU ARE DEAD")
+                    // alert("YOU ARE DEAD")
             }
             if (this.youKill()) {
                 this.scor + 10
@@ -71,7 +71,8 @@ var Game = {
             return (
                 ((this.player1.positionX + this.player1.w - 60) >= enem.x &&
                     this.player1.positionX < (enem.x + enem.w) &&
-                    this.player1.positionY + (this.player1.h) >= enem.y && this.player1.positionY + (this.player1.h - 60) >= enem.y)
+                    this.player1.positionY + (this.player1.h) >= enem.y &&
+                    this.player1.positionY + (this.player1.h - 60) >= enem.y)
 
             )
 
@@ -115,7 +116,20 @@ var Game = {
         });
     },
     generateEnemy: function() {
-        this.enemy.push(new Enemy(this))
+
+        function aleatirio(max, min) {
+            return Math.round(Math.random(pushEnemy) * (max - min) + min)
+            console.log("paso por aleatorio")
+        }
+
+        var randomEnemy = aleatirio(6, 1)
+        if (randomEnemy >= 3) {
+            var pushEnemy = this.enemy.push(new Enemy(this))
+
+        }
+        console.log("estoy en el ramdom")
+        return randomEnemy
+
 
     },
     clear: function() {
@@ -130,7 +144,9 @@ var Game = {
 
     },
     moveAll: function() {
-        this.player1.gravity()
+        // this.player1.gravity()
+
+        this.player1.move()
         this.enemy.forEach(function(enem) { enem.move(); });
     },
     paintScore: function() {
