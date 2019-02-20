@@ -64,7 +64,7 @@ Player1.prototype.gravity = function() {
 
 
     if (this.positionY + gravity <= this.game.canvas.height - this.h) {
-        this.positionY += gravity
+        this.positionY += (gravity * 2)
     }
 
 }

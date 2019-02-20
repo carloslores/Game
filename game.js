@@ -41,6 +41,7 @@ var Game = {
             if (this.framesCounter % 50 === 0) {
                 this.generateEnemy();
             }
+            this.scor += 0.01;
             this.moveAll()
             this.paintAll()
             this.clearEnemy()
@@ -59,8 +60,10 @@ var Game = {
         this.background = new Background(this)
         this.player1 = new Player1(this)
         this.framesCounter = 0
-        this.score = 0
+        this.score = ScoreBoard
         this.enemy = []
+        this.scor = 0
+
     },
     youDied: function() {
         return this.enemy.some(function(enem) {
@@ -82,6 +85,7 @@ var Game = {
                     if (bullet.x + bullet.w > enemy.x) {
                         this.player1.bullets.shift();
                         this.enemy.shift();
+
                     }
                 }.bind(this))
             }.bind(this))
@@ -119,17 +123,16 @@ var Game = {
         this.background.paint()
         this.player1.paint()
         this.enemy.forEach(function(enem) { enem.draw(); })
-            //this.paintScore()
+        this.paintScore()
 
     },
     moveAll: function() {
         this.player1.gravity()
         this.enemy.forEach(function(enem) { enem.move(); });
     },
-    /* paintScore: function() {
-        this.score.update(this.score, this.ctx)
-    }
-*/
+    paintScore: function() {
+        this.score.update(this.scor, this.ctx)
+    },
 
 
 
