@@ -71,7 +71,7 @@ var Game = {
             return (
                 ((this.player1.positionX + this.player1.w - 60) >= enem.x &&
                     this.player1.positionX < (enem.x + enem.w) &&
-                    this.player1.positionY + (this.player1.h) >= enem.y)
+                    this.player1.positionY + (this.player1.h) >= enem.y && this.player1.positionY + (this.player1.h - 60) >= enem.y)
 
             )
 

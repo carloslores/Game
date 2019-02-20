@@ -1,13 +1,13 @@
 function Enemy(game) {
     this.game = game
     this.x = this.game.canvas.width;
-    this.y = this.game.canvas.height - 140;
+    this.y = this.game.canvas.height - 120;
     this.img = new Image()
     this.img.src = "img/walker.png"
 
     this.dx = 5
     this.w = 150
-    this.h = 140
+    this.h = 110
 
 
 
