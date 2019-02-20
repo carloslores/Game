@@ -40,10 +40,12 @@ var Game = {
                     this.framesCounter = 0
             if (this.framesCounter % 50 === 0) {
                 this.generateEnemy()
+                this.generateFinalEnemy()
             }
 
             this.moveAll()
             this.paintAll()
+
             this.clearEnemy()
             if (this.youDied()) {
                 console.log("YOU ARE DEAD")
@@ -60,9 +62,11 @@ var Game = {
     reset: function() {
         this.background = new Background(this)
         this.player1 = new Player1(this)
+            // this.finalenemy = new Finalenemy(this)
         this.framesCounter = 0
         this.score = ScoreBoard
         this.enemy = []
+        this.finalenemy = []
         this.scor = 0
 
     },
@@ -83,10 +87,20 @@ var Game = {
         var kill = false;
 
         this.enemy.forEach(function(enemy) {
+            this.player1.bullets.forEach(function(bullet) {
+                if (bullet.x + bullet.w > enemy.x && bullet.y + bullet.w > enemy.y) {
+                    this.player1.bullets.shift();
+                    this.enemy.shift();
+                    this.scor += 10
+                }
+
+            }.bind(this))
+        }.bind(this))
+        this.finalenemy.forEach(function(finalenemy) {
                 this.player1.bullets.forEach(function(bullet) {
-                    if (bullet.x + bullet.w > enemy.x && bullet.y + bullet.w > enemy.y) {
+                    if (bullet.x + bullet.w > finalenemy.x && bullet.y + bullet.w > finalenemy.y) {
                         this.player1.bullets.shift();
-                        this.enemy.shift();
+                        this.finalenemy.shift();
                         this.scor += 10
                     }
 
@@ -117,6 +131,7 @@ var Game = {
     },
     generateEnemy: function() {
 
+
         function aleatirio(max, min) {
             return Math.round(Math.random(pushEnemy) * (max - min) + min)
             console.log("paso por aleatorio")
@@ -132,6 +147,9 @@ var Game = {
 
 
     },
+    generateFinalEnemy: function() {
+        this.finalenemy.push(new Finalenemy(this))
+    },
     clear: function() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     },
@@ -139,15 +157,20 @@ var Game = {
     paintAll: function() {
         this.background.paint()
         this.player1.paint()
+        this.finalenemy.forEach(function(fenem) { fenem.paint(); })
         this.enemy.forEach(function(enem) { enem.draw(); })
+
+
         this.paintScore()
 
     },
     moveAll: function() {
         // this.player1.gravity()
-
         this.player1.move()
+        this.finalenemy.forEach(function(fenem) { fenem.move(); })
         this.enemy.forEach(function(enem) { enem.move(); });
+
+
     },
     paintScore: function() {
         this.score.update(this.scor, this.ctx)
