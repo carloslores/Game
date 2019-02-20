@@ -40,8 +40,9 @@ var Game = {
                     this.framesCounter = 0
             if (this.framesCounter % 50 === 0) {
                 this.generateEnemy()
-                this.generateFinalEnemy()
+
             }
+
 
             this.moveAll()
             this.paintAll()
@@ -92,6 +93,9 @@ var Game = {
                     this.player1.bullets.shift();
                     this.enemy.shift();
                     this.scor += 10
+                    if (this.scor >= 100) {
+                        this.generateFinalEnemy()
+                    }
                 }
 
             }.bind(this))
@@ -102,6 +106,7 @@ var Game = {
                         this.player1.bullets.shift();
                         this.finalenemy.shift();
                         this.scor += 10
+
                     }
 
                 }.bind(this))
@@ -148,6 +153,8 @@ var Game = {
 
     },
     generateFinalEnemy: function() {
+
+
         this.finalenemy.push(new Finalenemy(this))
     },
     clear: function() {
