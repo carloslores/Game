@@ -1,7 +1,7 @@
 function Enemy(game) {
     this.game = game
     this.x = this.game.canvas.width;
-    this.y = this.game.player1.positionY;
+    this.y = this.game.canvas.height - 140;
     this.img = new Image()
     this.img.src = "img/walker.png"
 

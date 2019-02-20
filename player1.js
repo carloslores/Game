@@ -72,7 +72,7 @@ Player1.prototype.gravity = function() {
 
 Player1.prototype.jump = function() {
     if (this.positionY - 140 > 0 && this.positionY - 140 >= this.h) {
-        this.positionY -= 140
+        this.positionY -= 180
         this.gravity()
 
     }
