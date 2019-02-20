@@ -41,7 +41,7 @@ var Game = {
             if (this.framesCounter % 50 === 0) {
                 this.generateEnemy();
             }
-            this.scor += 0.01;
+
             this.moveAll()
             this.paintAll()
             this.clearEnemy()
@@ -50,6 +50,7 @@ var Game = {
                 alert("YOU ARE DEAD")
             }
             if (this.youKill()) {
+                this.scor + 10
                 console.log("YOU KILL")
             }
         }.bind(this), 1000 / this.fps);
@@ -85,8 +86,9 @@ var Game = {
                     if (bullet.x + bullet.w > enemy.x) {
                         this.player1.bullets.shift();
                         this.enemy.shift();
-
+                        this.scor += 10
                     }
+
                 }.bind(this))
             }.bind(this))
             /*
@@ -103,6 +105,7 @@ var Game = {
 
 
                     }.bind(this))*/
+
 
     },
 
