@@ -4,10 +4,10 @@ function Player1(game) {
     this.y = this.y0
 
     this.img = new Image
-    this.img.src = "img/Jon.png"
+    this.img.src = "img/JonSnow1.png"
 
-    this.w = 70
-    this.h = 140
+    this.w = 180
+    this.h = 220
     this.y0 = this.game.canvas.height - this.h
     this.vy = 1
     this.positionY = this.y0
@@ -79,9 +79,10 @@ Player1.prototype.gravity = function() {
 
 
 Player1.prototype.jump = function() {
-    if (this.positionY - 180 > 0 && this.positionY - 180 >= this.h) {
+    if (this.positionY - 5 > 0 && this.positionY - 5 >= this.h) {
         this.positionY -= 5
         this.vy = -10
+        console.log("paso por jump")
             // this.gravity()
 
 

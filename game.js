@@ -93,7 +93,7 @@ var Game = {
                     this.player1.bullets.shift();
                     this.enemy.shift();
                     this.scor += 10
-                    if (this.scor >= 100) {
+                    if (this.scor >= 200) {
                         this.generateFinalEnemy()
                     }
                 }
@@ -165,6 +165,7 @@ var Game = {
         this.background.paint()
         this.player1.paint()
         this.finalenemy.forEach(function(fenem) { fenem.paint(); })
+            //this.finalenemy.shoot()
         this.enemy.forEach(function(enem) { enem.draw(); })
 
 
@@ -175,6 +176,7 @@ var Game = {
         // this.player1.gravity()
         this.player1.move()
         this.finalenemy.forEach(function(fenem) { fenem.move(); })
+            //this.finalenemy.move()
         this.enemy.forEach(function(enem) { enem.move(); });
 
 
