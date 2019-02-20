@@ -48,12 +48,20 @@ Player1.prototype.setListerner = function() {
                 this.moveB()
                 break;
             case this.game.keys.shoot:
-                this.shoot()
+                if (this.bullets <= 1)
+                    this.shoot()
+
                 break;
 
 
         }
-
+        /*document.onkeyup = function(e) {
+            console.log("dejo de disparar")
+            if (this.game.keys.shoot) {
+                console.log("entro por aquí")
+                this.shoot() = true
+            }
+        }.bind(this)*/
     }.bind(this)
 
 
@@ -71,7 +79,7 @@ Player1.prototype.gravity = function() {
 
 
 Player1.prototype.jump = function() {
-    if (this.positionY - 140 > 0 && this.positionY - 140 >= this.h) {
+    if (this.positionY - 180 > 0 && this.positionY - 180 >= this.h) {
         this.positionY -= 180
         this.gravity()
 
