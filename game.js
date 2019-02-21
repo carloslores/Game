@@ -20,7 +20,7 @@ var Game = {
         this.canvas.height = this.h
         this._setDimensions()
         this.start()
-        console.log("sywywywywy")
+
 
     },
     _setDimensions: function() {
@@ -49,12 +49,12 @@ var Game = {
 
             this.clearEnemy()
             if (this.youDied()) {
-                console.log("YOU ARE DEAD")
-                    // alert("YOU ARE DEAD")
+
+                // alert("YOU ARE DEAD")
             }
             if (this.youKill()) {
                 this.scor + 10
-                console.log("YOU KILL")
+
             }
         }.bind(this), 1000 / this.fps);
 
@@ -88,8 +88,8 @@ var Game = {
     youKill: function() {
         var kill = false;
 
-        this.enemy.forEach(function(enemy, i) {
-            this.player1.bullets.forEach(function(bullet, i) {
+        this.enemy.forEach(function(enemy) {
+            this.player1.bullets.forEach(function(bullet) {
                 if (bullet.x + bullet.w > enemy.x && bullet.y + bullet.w > enemy.y) {
                     this.player1.bullets.shift();
                     this.enemy.shift();
@@ -99,14 +99,14 @@ var Game = {
 
                     } else if (this.scor >= 10) {
                         this.genetateSurpriseCharacter()
-                        console.log("paso por SURPRISE")
+
                     }
                 }
 
             }.bind(this))
         }.bind(this))
-        this.finalenemy.forEach(function(finalenemy) {
-                this.player1.bullets.forEach(function(bullet) {
+        this.finalenemy.forEach(function(finalenemy, i) {
+                this.player1.bullets.forEach(function(bullet, i) {
                     if (bullet.x + bullet.w > finalenemy.x && bullet.y + bullet.w > finalenemy.y) {
                         this.player1.bullets.shift();
                         this.finalenemy.shift();
@@ -144,7 +144,7 @@ var Game = {
 
         function aleatirio(max, min) {
             return Math.round(Math.random(pushEnemy) * (max - min) + min)
-            console.log("paso por aleatorio")
+
         }
 
         var randomEnemy = aleatirio(6, 1)
@@ -152,7 +152,7 @@ var Game = {
             var pushEnemy = this.enemy.push(new Enemy(this))
 
         }
-        console.log("estoy en el ramdom")
+
         return randomEnemy
 
 
@@ -173,6 +173,12 @@ var Game = {
         this.player1.paint()
         this.finalenemy.forEach(function(fenem) {
                 fenem.paint();
+                console.log(fenem.bullet[0])
+                fenem.bullet.forEach(function(b) {
+                    console.log(b)
+                    b.paint()
+                })
+
             })
             // this.finalenemy.shoot()
             //this.finalenemy.shoot()
@@ -193,12 +199,12 @@ var Game = {
 
 
     },
-    genetateSurpriseCharacter: function() {
-        console.log("paso por enetateSurpriseCharacter ")
-        this.surpriseCharacter.paint()
-        this.surpriseCharacter.move()
-        this.surpriseCharacter = new SurpriseCharacter(this)
-    },
+    // genetateSurpriseCharacter: function() {
+    // console.log("paso por enetateSurpriseCharacter ")
+    //     this.surpriseCharacter.paint()
+    //     this.surpriseCharacter.move()
+    //     this.surpriseCharacter = new SurpriseCharacter(this)
+    // },
     paintScore: function() {
         this.score.update(this.scor, this.ctx)
     },

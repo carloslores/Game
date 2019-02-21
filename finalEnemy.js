@@ -10,31 +10,20 @@ function Finalenemy(game) {
     this.h = 190
     this.bullet = []
 
-    setTimeout(function() { return this.shoot() }.bind(this), 100)
+    this.shoot()
 
 }
 
 Finalenemy.prototype.paint = function() {
     this.game.ctx.drawImage(this.img, this.x, this.y, this.w, this.h)
-    this.lasers = this.bullet.filter(function(laser) {
-        return laser.x < this.game.canvas.width;
-    }.bind(this));
-
-    this.lasers.forEach(function(bullet) {
-        bullet.paint();
-        bullet.move();
-        // this.shoot()
-    }.bind(this));
-    //this.shoot()
-    // this.move()
-
 }
+
 Finalenemy.prototype.shoot = function() {
 
-    var laser = new Bullet(this.game, this.y, this.x + this.h / 2, "img/laser.jpg")
-
+    var laser = new EnemyBullet(this.game, this.x, this.y + this.h / 2)
     this.bullet.push(laser)
 }
 Finalenemy.prototype.move = function() {
-    this.x -= this.dx;
+    var movIn
+    movIn = this.x -= this.dx;
 }
