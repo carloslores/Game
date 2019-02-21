@@ -63,6 +63,7 @@ var Game = {
     reset: function() {
         this.background = new Background(this)
         this.player1 = new Player1(this)
+            //this.surpriseCharacter = new SurpriseCharacter(this)
             // this.finalenemy = new Finalenemy(this)
         this.framesCounter = 0
         this.score = ScoreBoard
@@ -87,14 +88,18 @@ var Game = {
     youKill: function() {
         var kill = false;
 
-        this.enemy.forEach(function(enemy) {
-            this.player1.bullets.forEach(function(bullet) {
+        this.enemy.forEach(function(enemy, i) {
+            this.player1.bullets.forEach(function(bullet, i) {
                 if (bullet.x + bullet.w > enemy.x && bullet.y + bullet.w > enemy.y) {
                     this.player1.bullets.shift();
                     this.enemy.shift();
                     this.scor += 10
-                    if (this.scor >= 200) {
+                    if (this.scor >= 50) {
                         this.generateFinalEnemy()
+
+                    } else if (this.scor >= 10) {
+                        this.genetateSurpriseCharacter()
+                        console.log("paso por SURPRISE")
                     }
                 }
 
@@ -156,7 +161,9 @@ var Game = {
 
 
         this.finalenemy.push(new Finalenemy(this))
+
     },
+
     clear: function() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     },
@@ -164,7 +171,10 @@ var Game = {
     paintAll: function() {
         this.background.paint()
         this.player1.paint()
-        this.finalenemy.forEach(function(fenem) { fenem.paint(); })
+        this.finalenemy.forEach(function(fenem) {
+                fenem.paint();
+            })
+            // this.finalenemy.shoot()
             //this.finalenemy.shoot()
         this.enemy.forEach(function(enem) { enem.draw(); })
 
@@ -176,10 +186,18 @@ var Game = {
         // this.player1.gravity()
         this.player1.move()
         this.finalenemy.forEach(function(fenem) { fenem.move(); })
-            //this.finalenemy.move()
+            // this.finalenemy.shoot()
+            // this.finalenemy.move()
+
         this.enemy.forEach(function(enem) { enem.move(); });
 
 
+    },
+    genetateSurpriseCharacter: function() {
+        console.log("paso por enetateSurpriseCharacter ")
+        this.surpriseCharacter.paint()
+        this.surpriseCharacter.move()
+        this.surpriseCharacter = new SurpriseCharacter(this)
     },
     paintScore: function() {
         this.score.update(this.scor, this.ctx)

@@ -1,10 +1,10 @@
-function Bullet(game, x, y) {
+function Bullet(game, x, y, src) {
     this.game = game;
 
     this.x = this.game.player1.positionX + game.player1.w / 2;
     this.y = this.game.player1.positionY + game.player1.h / 2.5;
     this.img = new Image
-    this.img.src = "img/dagger.png"
+    this.img.src = src
 
     this.r = 5;
     this.w = 80
