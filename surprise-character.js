@@ -1,4 +1,4 @@
-function SurpriseCharacter(game) {
+/*function SurpriseCharacter(game) {
     this.game = game
     this.x = this.game.canvas.width;
     this.y = this.game.canvas.height - 200;
@@ -19,4 +19,4 @@ SurpriseCharacter.prototype.paint = function() {
 
 SurpriseCharacter.prototype.move = function() {
     this.x -= this.dx;
-};
+};*/

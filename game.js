@@ -20,6 +20,7 @@ var Game = {
         this.canvas.height = this.h
         this._setDimensions()
         this.start()
+        this.vaderSound = new Audio("sound/Vader.mp3")
 
 
     },
@@ -39,7 +40,13 @@ var Game = {
                 if (this.framesCounter > 1000)
                     this.framesCounter = 0
             if (this.framesCounter % 50 === 0) {
-                this.generateEnemy()
+                if (this.scor < 50) {
+                    this.generateEnemy()
+                } else {
+                    this.generateFinalEnemy()
+                        // this.game.init.vaderSound.play()
+                    this.pushEnemy = []
+                }
 
             }
 
@@ -49,9 +56,13 @@ var Game = {
 
             this.clearEnemy()
             if (this.youDied()) {
-
-                // alert("YOU ARE DEAD")
+                this.scor -= 0.5
+                    // alert("YOU ARE DEAD")
             }
+            if (this.vaderShoot()) {
+                // this.scor = -100
+            }
+
             if (this.youKill()) {
                 this.scor + 10
 
@@ -68,7 +79,7 @@ var Game = {
         this.framesCounter = 0
         this.score = ScoreBoard
         this.enemy = []
-        this.finalenemy = []
+        this.vader = []
         this.scor = 0
 
     },
@@ -84,52 +95,77 @@ var Game = {
 
         }.bind(this))
 
+
     },
+    vaderShoot: function() {
+        // if (this.vade.bullet !== undefined) {
+        return this.vader.some(function(vade) {
+
+                return vade.bullet.some(function(benem) {
+                    return (
+                        ((this.player1.positionX + this.player1.w - 60) >= benem.x &&
+                            this.player1.positionX < (benem.x + benem.w) &&
+                            this.player1.positionY + (this.player1.h) >= benem.y &&
+                            this.player1.positionY + (this.player1.h - 60) >= benem.y)
+
+                    )
+
+                }.bind(this))
+            }.bind(this))
+            // }
+        console.log("kill by vader")
+    },
+
     youKill: function() {
         var kill = false;
 
-        this.enemy.forEach(function(enemy) {
-            this.player1.bullets.forEach(function(bullet) {
-                if (bullet.x + bullet.w > enemy.x && bullet.y + bullet.w > enemy.y) {
-                    this.player1.bullets.shift();
-                    this.enemy.shift();
+        this.enemy.forEach(function(enemy, r) {
+            this.player1.bullets.forEach(function(bullet, i) {
+                if (bullet.x + bullet.w > enemy.x && bullet.y + bullet.w > enemy.y && bullet.x < (enemy.x + enemy.w)) {
+                    this.player1.bullets.splice(i, 1);
+                    this.enemy.splice(r, 1);
                     this.scor += 10
                     if (this.scor >= 50) {
                         this.generateFinalEnemy()
+                            // this.game.init.vaderSound.play()
+                        this.pushEnemy = []
 
-                    } else if (this.scor >= 10) {
-                        this.genetateSurpriseCharacter()
+                        // this.scor - 0.5
 
-                    }
+                    } //else if (this.scor >= 10) {
+                    //  this.genetateSurpriseCharacter()
+
+                    //}
                 }
 
             }.bind(this))
         }.bind(this))
-        this.finalenemy.forEach(function(finalenemy, i) {
-                this.player1.bullets.forEach(function(bullet, i) {
-                    if (bullet.x + bullet.w > finalenemy.x && bullet.y + bullet.w > finalenemy.y) {
-                        this.player1.bullets.shift();
-                        this.finalenemy.shift();
-                        this.scor += 10
+        this.vader.forEach(function(vade, r) {
+            this.player1.bullets.forEach(function(bullet, i) {
+                if (bullet.x + bullet.w > vade.x && bullet.y + bullet.h > vade.y && bullet.x < (vade.x + vade.w)) {
+                    this.player1.bullets.splice(i, 1);
+                    this.vader.splice(r, 1);
+                    this.scor += 10
 
-                    }
+                }
 
-                }.bind(this))
             }.bind(this))
-            /*
-                    return this.enemy.some(function(enem) {
-                        return this.player1.bullets.some(function(bullet) {
+        }.bind(this))
 
-                            bullet.x + bullet.w > enem.x
+        /*
+                return this.enemy.some(function(enem) {
+                    return this.player1.bullets.some(function(bullet) {
 
-
-                            return this.enemy.shift()
-
-
-                        }.bind(this))
+                        bullet.x + bullet.w > enem.x
 
 
-                    }.bind(this))*/
+                        return this.enemy.shift()
+
+
+                    }.bind(this))
+
+
+                }.bind(this))*/
 
 
     },
@@ -152,7 +188,14 @@ var Game = {
             var pushEnemy = this.enemy.push(new Enemy(this))
 
         }
+        if (this.scor >= 50) {
+            this.generateFinalEnemy()
+                // this.game.init.vaderSound.play()
+            this.pushEnemy = []
 
+            // this.scor - 0.5
+
+        }
         return randomEnemy
 
 
@@ -160,7 +203,7 @@ var Game = {
     generateFinalEnemy: function() {
 
 
-        this.finalenemy.push(new Finalenemy(this))
+        this.vader.push(new Finalenemy(this))
 
     },
 
@@ -171,11 +214,11 @@ var Game = {
     paintAll: function() {
         this.background.paint()
         this.player1.paint()
-        this.finalenemy.forEach(function(fenem) {
+        this.vader.forEach(function(fenem) {
                 fenem.paint();
-                console.log(fenem.bullet[0])
+
                 fenem.bullet.forEach(function(b) {
-                    console.log(b)
+
                     b.paint()
                 })
 
@@ -191,7 +234,7 @@ var Game = {
     moveAll: function() {
         // this.player1.gravity()
         this.player1.move()
-        this.finalenemy.forEach(function(fenem) { fenem.move(); })
+        this.vader.forEach(function(fenem) { fenem.move(); })
             // this.finalenemy.shoot()
             // this.finalenemy.move()
 
@@ -207,10 +250,5 @@ var Game = {
     // },
     paintScore: function() {
         this.score.update(this.scor, this.ctx)
-    },
-
-
-
-
-
+    }
 }

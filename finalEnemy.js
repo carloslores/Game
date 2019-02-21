@@ -10,7 +10,7 @@ function Finalenemy(game) {
     this.h = 190
     this.bullet = []
 
-    this.shoot()
+    this.shootlaser()
 
 }
 
@@ -18,7 +18,7 @@ Finalenemy.prototype.paint = function() {
     this.game.ctx.drawImage(this.img, this.x, this.y, this.w, this.h)
 }
 
-Finalenemy.prototype.shoot = function() {
+Finalenemy.prototype.shootlaser = function() {
 
     var laser = new EnemyBullet(this.game, this.x, this.y + this.h / 2)
     this.bullet.push(laser)

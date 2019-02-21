@@ -19,8 +19,8 @@ function EnemyBullet(game, x, y) {
 }
 
 EnemyBullet.prototype.paint = function() {
-    console.log(this.x)
-        // this.game.ctx.beginPath();
+    // console.log(this.x)
+    // this.game.ctx.beginPath();
     this.game.ctx.drawImage(this.img, this.x, this.y, this.w, this.h)
     this.move()
         //  this.game.ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
