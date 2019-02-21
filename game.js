@@ -73,6 +73,12 @@ var Game = {
 
 
     },
+    stop: function() {
+        clearInterval(this.interval)
+    },
+    gameOver: function() {
+        this.stop()
+    },
     reset: function() {
         this.background = new Background(this)
         this.player1 = new Player1(this)
