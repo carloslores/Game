@@ -21,6 +21,8 @@ var Game = {
         this._setDimensions()
         this.start()
         this.vaderSound = new Audio("sound/Vader.mp3")
+        this.mainSound = new Audio("sound/Main.mp3")
+        this.screamSound = new Audio("sound/Scream.mp3")
 
 
     },
@@ -44,13 +46,13 @@ var Game = {
                     this.generateEnemy()
                 } else {
                     this.generateFinalEnemy()
-                        // this.game.init.vaderSound.play()
+                    this.vaderSound.play()
                     this.pushEnemy = []
                 }
 
             }
 
-
+            this.mainSound.play()
             this.moveAll()
             this.paintAll()
 
@@ -125,6 +127,7 @@ var Game = {
                     this.player1.bullets.splice(i, 1);
                     this.enemy.splice(r, 1);
                     this.scor += 10
+                    this.screamSound.play()
                     if (this.scor >= 50) {
                         this.generateFinalEnemy()
                             // this.game.init.vaderSound.play()

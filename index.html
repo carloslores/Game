@@ -7,6 +7,7 @@
     <title>Page Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="style/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
     <link rel="stylesheet" href="style/style.css">
 
 
@@ -15,13 +16,24 @@
 </head>
 
 <body>
-    <div class="conteiner">
-        <div class="row">
-            <div class="col-8"><button type="button" class="btn btn-primary" id="start">Start</button>
+    <header id="header">
+        <h1>Name</h1>
+        <h2>Warning</h2>
+        <p>This game is only for freaks</p>
+    </header>
+    <section>
+        <article id="instructions">
+            Game instructions
+        </article>
+    </section>
+    <section>
+        <div class="conteiner">
+            <div class="row">
+                <div class="col-8"><button type="button" class="btn btn-primary" id="start">Start</button>
+                </div>
             </div>
         </div>
-    </div>
-
+    </section>
     <canvas id="game-board"></canvas>
 
 
