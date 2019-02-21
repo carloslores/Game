@@ -7,12 +7,24 @@ header {
     padding: 0 50px;
 }
 
+.warning {
+    position: relative;
+    margin-bottom: 60%;
+}
+
+header h2 {
+    font-size: 1.8em;
+    margin-left: 90px
+}
+
 header p {
-    margin-left: 60px;
-    width: 100px
+    margin-left: 90px;
+    margin-bottom: 10px;
+    width: 180px
 }
 
 header h1 {
+    margin-left: 600px;
     font-size: 2.7em;
 }
 
@@ -21,7 +33,9 @@ header h1 {
 }
 
 #start {
-    margin: 100px
+    margin-left: 640px;
+    padding-left: 40px;
+    padding-right: 40px;
 }
 
 body {
