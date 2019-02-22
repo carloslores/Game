@@ -67,7 +67,7 @@ var Game = {
                 // alert("YOU ARE DEAD")
             }
             if (this.vaderShoot()) {
-                // this.scor = -100
+                this.scor = -10
             }
 
             if (this.youKill()) {
@@ -84,14 +84,14 @@ var Game = {
     gameOver: function() {
         this.stop()
 
-        if (confirm("GAME OVER. Play again?")) {
-            this.reset();
-            this.start();
-        }
-        //this.ctx.drawImage(this.img, 300, 100, this.w / 2, this.h / 2)
-        this.reset();
-        this.start();
-
+        //if (confirm("GAME OVER. Play again?")) {
+        //this.reset();
+        //this.start();
+        //}
+        this.ctx.drawImage(this.img, 300, 100, this.w / 2, this.h / 2)
+            //this.reset();
+            //this.start();
+            //
 
     },
     reset: function() {
@@ -124,18 +124,17 @@ var Game = {
         // if (this.vade.bullet !== undefined) {
         return this.vader.some(function(vade) {
 
-                return vade.bullet.some(function(benem) {
-                    return (
-                        ((this.player1.positionX + this.player1.w - 60) >= benem.x &&
-                            this.player1.positionX < (benem.x + benem.w) &&
-                            this.player1.positionY + (this.player1.h) >= benem.y &&
-                            this.player1.positionY + (this.player1.h - 60) >= benem.y)
+            return vade.bullet.some(function(benem) {
+                return (
+                    ((this.player1.positionX + this.player1.w - 60) >= benem.x &&
+                        this.player1.positionX < (benem.x + benem.w) &&
+                        this.player1.positionY + (this.player1.h) >= benem.y &&
+                        this.player1.positionY + (this.player1.h - 60) >= benem.y)
+                )
 
-                    )
-
-                }.bind(this))
             }.bind(this))
-            // }
+        }.bind(this))
+        this.scor -= 5
         console.log("kill by vader")
     },
 
@@ -151,10 +150,11 @@ var Game = {
                     this.screamSound.play()
                     if (this.scor >= 50) {
                         this.generateFinalEnemy()
+                            //this.scor -= 5
                             // this.game.init.vaderSound.play()
                         this.pushEnemy = []
 
-                        // this.scor - 0.5
+                        this.scor - 0.5
 
                     } //else if (this.scor >= 10) {
                     //  this.genetateSurpriseCharacter()
@@ -217,7 +217,7 @@ var Game = {
                 // this.game.init.vaderSound.play()
             this.pushEnemy = []
 
-            // this.scor - 0.5
+            this.scor - 0.5
 
         }
         return randomEnemy

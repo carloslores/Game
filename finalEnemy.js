@@ -20,7 +20,7 @@ Finalenemy.prototype.paint = function() {
 
 Finalenemy.prototype.shootlaser = function() {
 
-    var laser = new EnemyBullet(this.game, this.x, this.y + this.h / 2)
+    var laser = new EnemyBullet(this.game, this.x, this.y + this.h / 2.5)
     this.bullet.push(laser)
 }
 Finalenemy.prototype.move = function() {

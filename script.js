@@ -7,6 +7,7 @@ window.onload = function() {
             // document.getElementById("gameover").style.display = "block"
         document.getElementById("start").style.display = "none"
         document.getElementById("header").style.display = "none"
+        document.getElementsById("body").style.backgroundImage = "none"
             // document.getElementById("instructions").style.display = "none"
     }
 }
