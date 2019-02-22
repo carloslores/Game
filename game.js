@@ -67,7 +67,7 @@ var Game = {
                 // alert("YOU ARE DEAD")
             }
             if (this.vaderShoot()) {
-                this.scor = -10
+                this.scor = -7
             }
 
             if (this.youKill()) {

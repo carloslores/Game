@@ -1,4 +1,7 @@
-header {
+body {}
+
+
+/* header {
     font-family: Opens Sans;
     font-size: 2em;
     text-align: center;
@@ -22,7 +25,7 @@ header {
 header h2 {
     color: white;
     font-size: 1.8em;
-    /*margin-left: 10px*/
+    /*margin-left: 10px
 }
 
 header p {
@@ -49,12 +52,52 @@ header h1 {
     padding-left: 40px;
     padding-right: 40px;
     margin-bottom: 100px;
-}
+}*/
 
 body {
+    overflow: hidden;
+}
+
+.gamePage {
     background-image: url(../img/Mainbg.jpg);
     background-repeat: no-repeat;
     background-size: cover;
-    height: 350px;
-    width: 500px
+    height: 100vh;
+    width: 100vw;
+    font-family: Opens Sans;
+    font-size: 2em;
+}
+
+.gamePage h1 {
+    font-size: 2.7em;
+}
+
+.gamePage h2 {
+    color: white;
+    font-size: 1.8em;
+}
+
+.gamePage p {
+    color: aliceblue;
+}
+
+#start {
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+.title {
+    width: 100vw;
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.instructions {
+    padding-top: 9%;
+    padding-left: 7%;
+    text-align: center;
+    width: 30vw;
 }

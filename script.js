@@ -5,9 +5,9 @@ window.onload = function() {
         //   document.getElementById("game-board").style.display = "block"
         Game.init("game-board")
             // document.getElementById("gameover").style.display = "block"
-        document.getElementById("start").style.display = "none"
-        document.getElementById("header").style.display = "none"
-        document.getElementsById("body").style.backgroundImage = "none"
+            // document.getElementById("start").style.display = "none"
+        document.getElementsByClassName("gamePage")[0].style.display = "none"
+            // document.body.style.backgroundImage = "none"
             // document.getElementById("instructions").style.display = "none"
     }
 }
