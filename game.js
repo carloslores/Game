@@ -23,8 +23,13 @@ var Game = {
         this.vaderSound = new Audio("sound/Vader.mp3")
         this.mainSound = new Audio("sound/Main.mp3")
         this.screamSound = new Audio("sound/Scream.mp3")
+        this.winSound = new Audio("sound/Win.mp3")
+        this.laserSund = new Audio("sound/Laser.mp3")
+
         this.img = new Image()
         this.img.src = "img/gameover.jpg"
+        this.img2 = new Image()
+        this.img2.src = "img/You Win.png"
 
     },
     _setDimensions: function() {
@@ -66,8 +71,12 @@ var Game = {
 
                 // alert("YOU ARE DEAD")
             }
+            if (this.scor >= 100) {
+                this.youWin()
+            }
             if (this.vaderShoot()) {
-                this.scor = -7
+                this.scor -= 0.7
+
             }
 
             if (this.youKill()) {
@@ -88,10 +97,17 @@ var Game = {
         //this.reset();
         //this.start();
         //}
-        this.ctx.drawImage(this.img, 300, 100, this.w / 2, this.h / 2)
+        this.ctx.drawImage(this.img, 310, 100, this.w / 2, this.h / 2)
             //this.reset();
             //this.start();
             //
+
+    },
+    youWin: function() {
+        this.stop()
+        this.ctx.drawImage(this.img2, 420, 40, 480 * 1.2, 360 * 1.2)
+        this.winSound.play()
+        this.mainSound.pause()
 
     },
     reset: function() {
@@ -122,6 +138,7 @@ var Game = {
     },
     vaderShoot: function() {
         // if (this.vade.bullet !== undefined) {
+
         return this.vader.some(function(vade) {
 
             return vade.bullet.some(function(benem) {
@@ -134,7 +151,7 @@ var Game = {
 
             }.bind(this))
         }.bind(this))
-        this.scor -= 5
+
         console.log("kill by vader")
     },
 
@@ -146,7 +163,7 @@ var Game = {
                 if (bullet.x + bullet.w > enemy.x && bullet.y + bullet.w > enemy.y && bullet.x < (enemy.x + enemy.w)) {
                     this.player1.bullets.splice(i, 1);
                     this.enemy.splice(r, 1);
-                    this.scor += 10
+                    this.scor += 30
                     this.screamSound.play()
                     if (this.scor >= 50) {
                         this.generateFinalEnemy()
