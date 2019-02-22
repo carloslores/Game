@@ -19,32 +19,14 @@ function EnemyBullet(game, x, y) {
 }
 
 EnemyBullet.prototype.paint = function() {
-    // console.log(this.x)
-    // this.game.ctx.beginPath();
+
     this.game.ctx.drawImage(this.img, this.x, this.y, this.w, this.h)
     this.move()
-        //  this.game.ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
-        //  this.game.ctx.fill();
-        //  this.game.ctx.closePath();
+
 }
 
 EnemyBullet.prototype.move = function() {
     this.x -= this.vx;
 
-    // this.vy += this.gravity;
-    // this.y += this.vy;
 
-    // if (this.y > this.game.player1.y0 + this.game.player1.h) {
-    //     this.vy *= -1;
-    // }
 };
-// EnemyBullet.prototype.paintLaser = function() {
-//     this.x = this.game.finalenemy.x + game.finalenemy.w;
-//     this.y = this.game.finalenemy.y
-//     this.img = new Image
-//     this.img.src = "img/laser.jpg"
-//     this.game.ctx.drawImage(this.img, this.x, this.y, this.w, this.h)
-// }
-// EnemyBullet.prototype.moveLaser = function() {
-//     this.x -= this.dx;
-// }

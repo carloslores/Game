@@ -25,6 +25,7 @@ var Game = {
         this.screamSound = new Audio("sound/Scream.mp3")
         this.winSound = new Audio("sound/Win.mp3")
         this.laserSund = new Audio("sound/Laser.mp3")
+        this.gameOverSound = new Audio("sound/Game Over.mp3")
 
         this.img = new Image()
         this.img.src = "img/gameover.jpg"
@@ -69,7 +70,7 @@ var Game = {
             if (this.scor < 0) {
                 this.gameOver()
 
-                // alert("YOU ARE DEAD")
+
             }
             if (this.scor >= 100) {
                 this.youWin()
@@ -93,14 +94,11 @@ var Game = {
     gameOver: function() {
         this.stop()
 
-        //if (confirm("GAME OVER. Play again?")) {
-        //this.reset();
-        //this.start();
-        //}
+
         this.ctx.drawImage(this.img, 310, 100, this.w / 2, this.h / 2)
-            //this.reset();
-            //this.start();
-            //
+        this.gameOverSound.play()
+        this.mainSound.pause()
+
 
     },
     youWin: function() {
@@ -113,8 +111,7 @@ var Game = {
     reset: function() {
         this.background = new Background(this)
         this.player1 = new Player1(this)
-            //this.surpriseCharacter = new SurpriseCharacter(this)
-            // this.finalenemy = new Finalenemy(this)
+
         this.framesCounter = 0
         this.score = ScoreBoard
         this.enemy = []
@@ -137,7 +134,7 @@ var Game = {
 
     },
     vaderShoot: function() {
-        // if (this.vade.bullet !== undefined) {
+
 
         return this.vader.some(function(vade) {
 
@@ -167,16 +164,12 @@ var Game = {
                     this.screamSound.play()
                     if (this.scor >= 50) {
                         this.generateFinalEnemy()
-                            //this.scor -= 5
-                            // this.game.init.vaderSound.play()
+
                         this.pushEnemy = []
 
                         this.scor - 0.5
 
-                    } //else if (this.scor >= 10) {
-                    //  this.genetateSurpriseCharacter()
-
-                    //}
+                    }
                 }
 
             }.bind(this))
@@ -193,20 +186,6 @@ var Game = {
             }.bind(this))
         }.bind(this))
 
-        /*
-                return this.enemy.some(function(enem) {
-                    return this.player1.bullets.some(function(bullet) {
-
-                        bullet.x + bullet.w > enem.x
-
-
-                        return this.enemy.shift()
-
-
-                    }.bind(this))
-
-
-                }.bind(this))*/
 
 
     },
@@ -231,7 +210,7 @@ var Game = {
         }
         if (this.scor >= 50) {
             this.generateFinalEnemy()
-                // this.game.init.vaderSound.play()
+
             this.pushEnemy = []
 
             this.scor - 0.5
@@ -256,16 +235,15 @@ var Game = {
         this.background.paint()
         this.player1.paint()
         this.vader.forEach(function(fenem) {
-                fenem.paint();
+            fenem.paint();
 
-                fenem.bullet.forEach(function(b) {
+            fenem.bullet.forEach(function(b) {
 
-                    b.paint()
-                })
-
+                b.paint()
             })
-            // this.finalenemy.shoot()
-            //this.finalenemy.shoot()
+
+        })
+
         this.enemy.forEach(function(enem) { enem.draw(); })
 
 
@@ -273,22 +251,16 @@ var Game = {
 
     },
     moveAll: function() {
-        // this.player1.gravity()
+
         this.player1.move()
         this.vader.forEach(function(fenem) { fenem.move(); })
-            // this.finalenemy.shoot()
-            // this.finalenemy.move()
+
 
         this.enemy.forEach(function(enem) { enem.move(); });
 
 
     },
-    // genetateSurpriseCharacter: function() {
-    // console.log("paso por enetateSurpriseCharacter ")
-    //     this.surpriseCharacter.paint()
-    //     this.surpriseCharacter.move()
-    //     this.surpriseCharacter = new SurpriseCharacter(this)
-    // },
+
     paintScore: function() {
         this.score.update(this.scor, this.ctx)
     }

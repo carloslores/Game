@@ -55,13 +55,7 @@ Player1.prototype.setListerner = function() {
 
 
         }
-        /*document.onkeyup = function(e) {
-            console.log("dejo de disparar")
-            if (this.game.keys.shoot) {
-                console.log("entro por aquí")
-                this.shoot() = true
-            }
-        }.bind(this)*/
+
     }.bind(this)
 
 
@@ -83,7 +77,6 @@ Player1.prototype.jump = function() {
         this.positionY -= 5
         this.vy = -10
         console.log("paso por jump")
-            // this.gravity()
 
 
     }
@@ -120,16 +113,3 @@ Player1.prototype.move = function() {
         this.vy += gravity;
     }
 }
-
-
-/*Player1.prototype.shoot = function() {
-    /* this.img = new Image()
-     this.img.src = "img/espada.png"
-     var sword = this.img.src
-    sword = new Sword(this.game, this.x + this.w, this.y + this.h / 2)
-    this.swords.push(sword)
-
-}
-*/
-
-// hacer una function creadora de armas
