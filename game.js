@@ -23,7 +23,8 @@ var Game = {
         this.vaderSound = new Audio("sound/Vader.mp3")
         this.mainSound = new Audio("sound/Main.mp3")
         this.screamSound = new Audio("sound/Scream.mp3")
-
+        this.img = new Image()
+        this.img.src = "img/gameover.jpg"
 
     },
     _setDimensions: function() {
@@ -59,7 +60,11 @@ var Game = {
             this.clearEnemy()
             if (this.youDied()) {
                 this.scor -= 0.5
-                    // alert("YOU ARE DEAD")
+            }
+            if (this.scor < 0) {
+                this.gameOver()
+
+                // alert("YOU ARE DEAD")
             }
             if (this.vaderShoot()) {
                 // this.scor = -100
@@ -78,6 +83,16 @@ var Game = {
     },
     gameOver: function() {
         this.stop()
+
+        if (confirm("GAME OVER. Play again?")) {
+            this.reset();
+            this.start();
+        }
+        //this.ctx.drawImage(this.img, 300, 100, this.w / 2, this.h / 2)
+        this.reset();
+        this.start();
+
+
     },
     reset: function() {
         this.background = new Background(this)

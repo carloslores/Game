@@ -38,7 +38,7 @@ Bullet.prototype.paintLaser = function() {
     this.x = this.game.finalenemy.x + game.finalenemy.w;
     this.y = this.game.finalenemy.y
     this.img = new Image
-    this.img.src = "img/laser.jpg"
+    this.img.src = "img/laser.png"
     this.game.ctx.drawImage(this.img, this.x, this.y, this.w, this.h)
 }
 Bullet.prototype.moveLaser = function() {
